@@ -22,9 +22,9 @@ resource "cloudflare_ruleset" "cache_config" {
   count = length(local.cache_rules_params) != 0 ? 1 : 0
 
   kind    = "zone"
-  name    = "default"
+  name    = "cache-rules"
   phase   = "http_request_cache_settings"
-  zone_id = data.cloudflare_zone.domain.id
+  zone_id = cloudflare_zone.domain.id
 
   rules = values(local.cache_rules_params)
 }

@@ -5,26 +5,25 @@ locals {
   } : {}
 }
 
-# Single Redirects resource
 resource "cloudflare_ruleset" "single_redirects" {
   count   = length(local.redirect_rules) != 0 ? 1 : 0
-  zone_id = data.cloudflare_zone.domain.id
+  zone_id = cloudflare_zone.domain.id
 
-  name  = "default"
+  name  = "redirects"
   kind  = "zone"
   phase = "http_request_dynamic_redirect"
 
   rules = [for rules in local.redirect_rules : {
     action      = "redirect"
-    description = lookup(rules, "name", null)
-    enabled     = lookup(rules, "enabled", false)
-    expression  = lookup(rules, "expression", "/")
+    description = rules.name
+    enabled     = try(rules.enabled, false)
+    expression  = try(rules.expression, "/")
     action_parameters = {
       from_value = {
-        preserve_query_string = lookup(rules, "preserve_query_string", false)
-        status_code           = lookup(rules, "status_code", 301)
+        preserve_query_string = try(rules.preserve_query_string, false)
+        status_code           = try(rules.status_code, 301)
         target_url = {
-          value = lookup(rules, "target_url", "/")
+          value = rules.target_url
         }
       }
     }

@@ -8,47 +8,47 @@ locals {
 resource "cloudflare_page_rule" "page_rule" {
   for_each = local.page_rules
 
-  zone_id  = data.cloudflare_zone.domain.id
+  zone_id  = cloudflare_zone.domain.id
   target   = each.value.target
-  priority = lookup(each.value, "priority", null)
-  status   = lookup(each.value, "status", null)
+  priority = each.value.priority
+  status   = each.value.status
 
   actions = {
-    always_use_https         = lookup(each.value.actions, "always_use_https", false)
-    automatic_https_rewrites = lookup(each.value.actions, "automatic_https_rewrites", null)
-    browser_cache_ttl        = lookup(each.value.actions, "browser_cache_ttl", null)
-    browser_check            = lookup(each.value.actions, "browser_check", null)
-    bypass_cache_on_cookie   = lookup(each.value.actions, "bypass_cache_on_cookie", null)
-    cache_by_device_type     = lookup(each.value.actions, "cache_by_device_type", null)
-    cache_deception_armor    = lookup(each.value.actions, "cache_deception_armor", null)
-    cache_level              = lookup(each.value.actions, "cache_level", null)
-    cache_on_cookie          = lookup(each.value.actions, "cache_on_cookie", null)
-    disable_apps             = lookup(each.value.actions, "disable_apps", false)
-    disable_performance      = lookup(each.value.actions, "disable_performance", false)
-    disable_railgun          = lookup(each.value.actions, "disable_railgun", false)
-    disable_security         = lookup(each.value.actions, "disable_security", false)
-    disable_zaraz            = lookup(each.value.actions, "disable_zaraz", false)
-    edge_cache_ttl           = lookup(each.value.actions, "edge_cache_ttl", null)
-    email_obfuscation        = lookup(each.value.actions, "email_obfuscation", null)
-    forwarding_url = lookup(each.value.actions, "forwarding_url", null) != null ? {
+    always_use_https         = each.value.actions.always_use_https
+    automatic_https_rewrites = each.value.actions.automatic_https_rewrites
+    browser_cache_ttl        = each.value.actions.browser_cache_ttl
+    browser_check            = each.value.actions.browser_check
+    bypass_cache_on_cookie   = each.value.actions.bypass_cache_on_cookie
+    cache_by_device_type     = each.value.actions.cache_by_device_type
+    cache_deception_armor    = each.value.actions.cache_deception_armor
+    cache_level              = each.value.actions.cache_level
+    cache_on_cookie          = each.value.actions.cache_on_cookie
+    disable_apps             = each.value.actions.disable_apps
+    disable_performance      = each.value.actions.disable_performance
+    disable_railgun          = each.value.actions.disable_railgun
+    disable_security         = each.value.actions.disable_security
+    disable_zaraz            = each.value.actions.disable_zaraz
+    edge_cache_ttl           = each.value.actions.edge_cache_ttl
+    email_obfuscation        = each.value.actions.email_obfuscation
+    forwarding_url = each.value.actions.forwarding_url != null ? {
       url         = each.value.actions.forwarding_url.url
       status_code = each.value.actions.forwarding_url.status_code
     } : null
-    host_header_override        = lookup(each.value.actions, "host_header_override", null)
-    ip_geolocation              = lookup(each.value.actions, "ip_geolocation", null)
-    mirage                      = lookup(each.value.actions, "mirage", null)
-    opportunistic_encryption    = lookup(each.value.actions, "opportunistic_encryption", null)
-    origin_error_page_pass_thru = lookup(each.value.actions, "origin_error_page_pass_thru", null)
-    polish                      = lookup(each.value.actions, "polish", null)
-    resolve_override            = lookup(each.value.actions, "resolve_override", null)
-    respect_strong_etag         = lookup(each.value.actions, "respect_strong_etag", null)
-    response_buffering          = lookup(each.value.actions, "response_buffering", null)
-    rocket_loader               = lookup(each.value.actions, "rocket_loader", null)
-    security_level              = lookup(each.value.actions, "security_level", null)
-    server_side_exclude         = lookup(each.value.actions, "server_side_exclude", null)
-    sort_query_string_for_cache = lookup(each.value.actions, "sort_query_string_for_cache", null)
-    ssl                         = lookup(each.value.actions, "ssl", null)
-    true_client_ip_header       = lookup(each.value.actions, "true_client_ip_header", null)
-    waf                         = lookup(each.value.actions, "waf", null)
+    host_header_override        = each.value.actions.host_header_override
+    ip_geolocation              = each.value.actions.ip_geolocation
+    mirage                      = each.value.actions.mirage
+    opportunistic_encryption    = each.value.actions.opportunistic_encryption
+    origin_error_page_pass_thru = each.value.actions.origin_error_page_pass_thru
+    polish                      = each.value.actions.polish
+    resolve_override            = each.value.actions.resolve_override
+    respect_strong_etag         = each.value.actions.respect_strong_etag
+    response_buffering          = each.value.actions.response_buffering
+    rocket_loader               = each.value.actions.rocket_loader
+    security_level              = each.value.actions.security_level
+    server_side_exclude         = each.value.actions.server_side_exclude
+    sort_query_string_for_cache = each.value.actions.sort_query_string_for_cache
+    ssl                         = each.value.actions.ssl
+    true_client_ip_header       = each.value.actions.true_client_ip_header
+    waf                         = each.value.actions.waf
   }
 }
