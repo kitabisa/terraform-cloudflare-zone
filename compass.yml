@@ -1,0 +1,16 @@
+name: terraform-cloudflare-zone
+id: ari:cloud:compass:ae9ec5f8-e892-4eda-9314-548dfad7b7fb:component/2b2df9d4-8719-41e2-ab56-c6f02232532a/67ff89af-79cd-49aa-94d9-0d2acaad62a7
+description: Manages Cloudflare zone resources including DNS records, page rules, cache rules, redirect rules, and zone settings.
+configVersion: 1
+typeId: SERVICE
+fields:
+  tier: 4
+links:
+  - name: null
+    type: REPOSITORY
+    url: https://github.com/kitabisa/terraform-cloudflare-zone
+relationships:
+  DEPENDS_ON: []
+labels:
+  - source:github
+customFields: null
