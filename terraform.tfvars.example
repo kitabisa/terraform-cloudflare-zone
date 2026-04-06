@@ -1,0 +1,67 @@
+zone_name = "example.dev"
+
+cache_rules = [
+  {
+    "name" = "Bypass blog example"
+    "cache" = false
+    "expression" = "(http.host eq \"blog.example.dev\")"
+    "enabled" = true
+  }
+]
+
+redirect_rules = [
+  {
+    "name" = "Redirect maintenance mode"
+    "expression" = "(http.host contains \"example.dev\")"
+    "target_url" = "https://maintenance.example.cc/"
+    "status_code" = 302
+    "enabled" = false
+  }
+]
+
+records = [
+  {
+    "name" = "blog"
+    "type" = "A"
+    "proxied" = true
+    "ttl" = 1
+    "content" = "192.0.2.1"
+  },
+  {
+    "name" = "www"
+    "type" = "CNAME"
+    "proxied" = false
+    "ttl" = 1
+    "content" = "example.dev"
+  },
+  {
+    "name" = "example.dev"
+    "type" = "MX"
+    "proxied" = false
+    "ttl" = 1
+    "content" = "alt.aspmx.l.google.com"
+    "priority" = 10
+  },
+  {
+    "name" = "example.dev"
+    "type" = "TXT"
+    "proxied" = false
+    "ttl" = 1
+    "content" = "google-site-verification=xxxxxxxxxxxx"
+  }
+]
+
+page_rules = [
+  {
+    target = "example.dev/*"
+    priority = 1
+    status = "active"
+    actions = {
+      "forwarding_url" = {
+        url = "https://blog.example.dev/"
+        status_code = 301
+      }
+    }
+  }
+]
+

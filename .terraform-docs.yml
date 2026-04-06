@@ -1,0 +1,139 @@
+formatter:
+  recursive: true
+
+content:
+  anchor: ""
+
+header: ""
+  footer: ""
+
+sections:
+  header: |
+    <!-- BEGIN_TF_DOCS -->
+    {{ .File.Content }}
+    <!-- END_TF_DOCS -->
+  inputs:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Inputs
+    hide:
+      sensitivity: false
+    show:
+      descriptions: true
+      names: true
+      required: true
+      type: true
+  module:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Modules
+  outputs:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Outputs
+    hide:
+      sensitivity: false
+    show:
+      descriptions: true
+      names: true
+  providers:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Providers
+  requirements:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Requirements
+  resources:
+    anchor: ""
+    description: ""
+    footer: ""
+    header: |
+      ## Resources
+
+settings:
+  anchor: false
+  color: false
+  default: ""
+  escape: true
+  fmt:
+    anchor: "`"
+    bold: "**"
+    colon: ": "
+    emphasis: "_"
+    header: ""
+    image: "![$1]($2)"
+    italic: "*"
+    link: "[$1]($2)"
+    quote: "> "
+    strong: "**"
+    sub: "_"
+    sup: "^"
+  indent: 2
+  html:
+    anchor: true
+    bold: false
+    description: false
+    escape: true
+    footer: ""
+    header: ""
+    image: false
+    italic: false
+    link: true
+    newlines: true
+    pre: true
+    quote: false
+    strength: false
+    sub: false
+    sup: false
+    table: true
+  markdown:
+    anchor: true
+    bold: true
+    description: true
+    escape: false
+    footer: ""
+    header: ""
+    image: true
+    italic: true
+    link: true
+    newlines: true
+    pre: true
+    quote: false
+    strength: true
+    sub: false
+    sup: false
+    table: true
+  naked: false
+  newline: true
+  sanitize: true
+  separator: true
+  show-all: false
+  simple: false
+  table-of-contents:
+    anchor: false
+    enabled: false
+    escape: false
+    indent: 2
+    level: 3
+  version: ""
+
+sort:
+  enabled: true
+  options:
+    case: false
+    description: false
+    id: false
+    name: true
+    required: false
+    type: false
